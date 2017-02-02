@@ -1,15 +1,15 @@
 package seedu.addressbook.data.person;
 
 public class Block {
-	private int _blockNumber;
+	private String _blockNumber;
 	
-	public Block(int blockNumber) {
+	public Block(String blockNumber) {
 		set_blockNumber(blockNumber);
 	}
-	public int get_blockNumber() {
+	public String get_blockNumber() {
 		return _blockNumber;
 	}
-	public void set_blockNumber(int _blockNumber) {
+	public void set_blockNumber(String _blockNumber) {
 		this._blockNumber = _blockNumber;
 	}
 	

@@ -1,17 +1,17 @@
 package seedu.addressbook.data.person;
 
 public class PostalCode {
-	private int _postalCode;
+	private String _postalCode;
 	
-	public PostalCode(int postalCode) {
+	public PostalCode(String postalCode) {
 		set_postalCode(postalCode);
 	}
 	
-	public int get_postalCode() {
+	public String get_postalCode() {
 		return _postalCode;
 	}
 	
-	public void set_postalCode(int _postalCode) {
+	public void set_postalCode(String _postalCode) {
 		this._postalCode = _postalCode;
 	}
 	

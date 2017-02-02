@@ -27,14 +27,15 @@ public class Address {
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
         String[] trimmedAddressParts = trimmedAddress.split(",");
+        int addressLength = trimmedAddressParts.length;
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        block = new Block(Integer.parseInt(trimmedAddressParts[0]));
-        street = new Street(trimmedAddressParts[1]);
-        unit = new Unit(trimmedAddressParts[2]);
-        postalCode = new PostalCode(Integer.parseInt(trimmedAddressParts[3]));
+        block = addressLength > 0 ? new Block(trimmedAddressParts[0]) : new Block("");
+        street = addressLength > 1 ? new Street(trimmedAddressParts[1]) : new Street("");
+        unit = addressLength > 2 ? new Unit(trimmedAddressParts[2]) : new Unit("");
+        postalCode = addressLength > 3 ? new PostalCode(trimmedAddressParts[3]) : new PostalCode("");
     }
 
     /**
@@ -46,8 +47,14 @@ public class Address {
 
     @Override
     public String toString() {
-        return String.valueOf(block.get_blockNumber()) + street.get_street() 
-        	   + unit.get_unit() + String.valueOf(postalCode.get_postalCode());
+         String address = block.get_blockNumber() + "," + 
+        		 street.get_street() + "," + 
+        		 unit.get_unit() + "," + 
+        		 postalCode.get_postalCode();
+         while (address.substring(address.length() - 1).equals(",")) {
+        	 address = address.substring(0, address.length()-1);
+         }
+         return address;
     }
 
     @Override
