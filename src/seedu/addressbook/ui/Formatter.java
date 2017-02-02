@@ -3,15 +3,14 @@ package seedu.addressbook.ui;
 import java.util.List;
 
 public class Formatter {
-	
-	private TextUi textUi;
 
 	/** Format of indexed list item */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
     
     /** Offset required to convert between 1-indexing and 0-indexing.  */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
-    
+    	
+	private TextUi textUi;
 	
 	public Formatter(TextUi textUi) {
 		this.textUi = textUi;
