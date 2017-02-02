@@ -26,7 +26,7 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
-        String[] trimmedAddressParts = trimmedAddress.split(",");
+        String[] trimmedAddressParts = trimmedAddress.split(", ");
         int addressLength = trimmedAddressParts.length;
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
@@ -47,12 +47,12 @@ public class Address {
 
     @Override
     public String toString() {
-         String address = block.get_blockNumber() + "," + 
-        		 street.get_street() + "," + 
-        		 unit.get_unit() + "," + 
+         String address = block.get_blockNumber() + ", " + 
+        		 street.get_street() + ", " + 
+        		 unit.get_unit() + ", " + 
         		 postalCode.get_postalCode();
-         while (address.substring(address.length() - 1).equals(",")) {
-        	 address = address.substring(0, address.length()-1);
+         while (address.substring(address.length() - 2).equals(", ")) {
+        	 address = address.substring(0, address.length() - 2);
          }
          return address;
     }
