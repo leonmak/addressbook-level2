@@ -12,7 +12,11 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-    public final String value;
+    public final Block block;
+    public final Street street;
+    public final Unit unit;
+    public final PostalCode postalCode;
+    
     private boolean isPrivate;
 
     /**
@@ -22,11 +26,15 @@ public class Address {
      */
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         String trimmedAddress = address.trim();
+        String[] trimmedAddressParts = trimmedAddress.split(",");
         this.isPrivate = isPrivate;
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        block = new Block(Integer.parseInt(trimmedAddressParts[0]));
+        street = new Street(trimmedAddressParts[1]);
+        unit = new Unit(trimmedAddressParts[2]);
+        postalCode = new PostalCode(Integer.parseInt(trimmedAddressParts[3]));
     }
 
     /**
@@ -38,19 +46,20 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return String.valueOf(block.get_blockNumber()) + street.get_street() 
+        	   + unit.get_unit() + String.valueOf(postalCode.get_postalCode());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                && this.toString().equals(((Address) other).toString())); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.toString().hashCode();
     }
 
     public boolean isPrivate() {
