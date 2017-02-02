@@ -9,6 +9,7 @@ import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.ui.TextUi;
 
+import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +41,13 @@ public class Main {
         start(launchArgs);
         runCommandLoopUntilExitCommand();
         exit();
+    }
+
+    /**
+     * Returns true if there is storage file at the storage path. 
+     */
+    private boolean doesStorageFileExist() {
+    	return storage.path.toFile().exists();
     }
 
     /**
@@ -80,11 +88,18 @@ public class Main {
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
-            String userCommandText = ui.getUserCommand();
+        	String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            recordResult(result);
-            ui.showResultToUser(result);
+        	try {
+	            if (!doesStorageFileExist()) {
+	            	throw new FileNotFoundException();
+	            }
+	            CommandResult result = executeCommand(command);
+	            recordResult(result);
+	            ui.showResultToUser(result);
+        	} catch (FileNotFoundException fnfe) {
+        		System.out.println("Missing storage file.");
+        	}
 
         } while (!ExitCommand.isExit(command));
     }
