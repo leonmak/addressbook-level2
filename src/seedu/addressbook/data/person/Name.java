@@ -65,7 +65,9 @@ public class Name {
      * Two names are considered similar if one is subset of another case insensitive.
      */
      public boolean isSimilar(Name other) {
-		return fullName.equals(other.fullName); 
+    	 String s1 = fullName.toLowerCase();
+    	 String s2 = other.fullName.toLowerCase();
+    	 return s1.contains(s2) || s2.contains(s1); 
      }
 
 }
