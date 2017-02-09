@@ -112,6 +112,7 @@ public class AddCommandTest {
         assertTrue(p.getAddress().isPrivate());
         boolean isTagListEmpty = !p.getTags().iterator().hasNext();
         assertTrue(isTagListEmpty);
+        assertEquals(p.getSequenceNumber(), Person.nextSequenceNumber - 1);
     }
 
     @Test
@@ -127,6 +128,7 @@ public class AddCommandTest {
         assertEquals(1, people.immutableListView().size());
         assertFalse(result.getRelevantPersons().isPresent());
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, p), result.feedbackToUser);
+        assertEquals(p.getSequenceNumber(), Person.nextSequenceNumber - 1);
     }
 
     @Test
@@ -143,5 +145,6 @@ public class AddCommandTest {
         UniquePersonList people = book.getAllPersons();
         assertTrue(people.contains(p));
         assertEquals(1, people.immutableListView().size());
+        assertEquals(p.getSequenceNumber(), Person.nextSequenceNumber - 1);
     }
 }
