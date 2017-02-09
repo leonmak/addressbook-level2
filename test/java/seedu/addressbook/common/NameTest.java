@@ -21,7 +21,7 @@ public class NameTest {
 		Name n3 = new Name("b");
 		assertTrue(n1.isSimilar(n2));
 		assertFalse(n1.isSimilar(n3));
-		
+		assertTrue(n1.isSimilar(null));
 	}
 
 }
