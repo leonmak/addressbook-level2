@@ -8,6 +8,10 @@ import java.util.List;
 
 import org.junit.Test;
 
+import seedu.addressbook.data.person.Name;
+import seedu.addressbook.data.person.Person;
+import seedu.addressbook.util.TestUtil;
+
 public class UtilsTest {
     @Test
     public void isAnyNull() {
@@ -15,6 +19,7 @@ public class UtilsTest {
         assertFalse(Utils.isAnyNull());
 
         // Any non-empty list
+        assertFalse(Utils.isAnyNull(new Object()));
         assertFalse(Utils.isAnyNull(new Object(), new Object()));
         assertFalse(Utils.isAnyNull("test"));
         assertFalse(Utils.isAnyNull(""));
@@ -60,6 +65,10 @@ public class UtilsTest {
         assertNotUnique(null, 1, new Integer(1));
         assertNotUnique(null, null);
         assertNotUnique(null, "a", "b", null);
+        
+        // some test for person objects
+        assertAreUnique(TestUtil.generateTestPerson(), TestUtil.generateTestPerson());
+        assertNotUnique(Name.EXAMPLE, Name.EXAMPLE);
     }
 
     private void assertAreUnique(Object... objects) {
