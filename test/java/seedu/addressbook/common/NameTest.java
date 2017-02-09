@@ -19,8 +19,12 @@ public class NameTest {
 		Name n1 = new Name("a");
 		Name n2 = new Name("aa");
 		Name n3 = new Name("b");
+		Name n4 = new Name("AA");
+		Name n5 = new Name("AAB");
 		assertTrue(n1.isSimilar(n2));
+		assertTrue(n1.isSimilar(n4));
 		assertFalse(n1.isSimilar(n3));
+		assertTrue(n1.isSimilar(n5));
 		assertFalse(n1.isSimilar(null));
 	}
 
