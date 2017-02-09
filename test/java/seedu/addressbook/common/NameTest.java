@@ -16,10 +16,9 @@ public class NameTest {
 
 	@Test
 	public void isSimilar() throws IllegalValueException {
-		Name n1 = new Name("");
-		Name n2 = new Name("");
-		assertTrue(n1.isSimilar(n2));
-		
+		Name n1 = new Name("a");
+		Name n2 = new Name("a");
+		assertTrue(n1.isSimilar(n2));	
 	}
 
 }
