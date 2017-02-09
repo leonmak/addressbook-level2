@@ -3,6 +3,7 @@ package seedu.addressbook.parser;
 import seedu.addressbook.commands.*;
 import seedu.addressbook.data.exception.IllegalValueException;
 
+import java.awt.print.Printable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -239,6 +240,4 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
-
-
 }

@@ -112,6 +112,8 @@ public class AddCommandTest {
         assertTrue(p.getAddress().isPrivate());
         boolean isTagListEmpty = !p.getTags().iterator().hasNext();
         assertTrue(isTagListEmpty);
+        assertEquals(p.getPrintableString(p.getAddress(), p.getName()), 
+        		p.getAddress().toString() + ", " + p.getName().toString());
     }
 
     @Test
