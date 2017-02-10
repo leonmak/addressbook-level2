@@ -3,6 +3,7 @@ package seedu.addressbook.commands;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.*;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 import seedu.addressbook.data.tag.UniqueTagList;
 
 import java.util.HashSet;
@@ -37,9 +38,6 @@ public class AddCommand extends Command {
                       String address, boolean isAddressPrivate,
                       Set<String> tags) throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(new Tag(tagName));
-        }
         this.toAdd = new Person(
                 new Name(name),
                 new Phone(phone, isPhonePrivate),
@@ -47,6 +45,11 @@ public class AddCommand extends Command {
                 new Address(address, isAddressPrivate),
                 new UniqueTagList(tagSet)
         );
+        for (String tagName : tags) {
+        	Tag tag = new Tag(tagName);
+            tagSet.add(tag);
+            addressBook.addTagging(new Tagging(tag, toAdd));
+        }
     }
 
     public AddCommand(Person toAdd) {

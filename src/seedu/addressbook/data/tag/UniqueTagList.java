@@ -167,4 +167,7 @@ public class UniqueTagList implements Iterable<Tag> {
                         && this.internalList.equals(((UniqueTagList) other).internalList));
     }
 
+    public void addTaggingToTaggings(Tagging tagging, ArrayList<Tagging> taggings) {
+    	taggings.add(tagging);
+    }
 }
